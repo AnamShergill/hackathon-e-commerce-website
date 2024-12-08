@@ -1,49 +1,161 @@
-import Image from "next/image";
+
+"use client"
+import React, { useState } from 'react';import Image from "next/image";
 import Link from "next/link";
 import { MdPersonOutline } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { GoHeart } from "react-icons/go";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-export default function Header() {
+const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-4">
-      {/* Logo */}
-      <div className="logo">
-        <Image src="/images/logo.png" width={150} height={35} alt="logo" className="sm:w-[185px] sm:h-[41px]" />
-      </div>
+    <nav className="bg-white shadow-md">
+      <div className="container mx-auto flex items-center justify-between px-4 py-5">
+        
+        <div className="flex items-center space-x-2">
+          <Image
+            src="/images/logo.png"
+            alt="Furniro Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
+        </div>
 
-      {/* Navigation Links */}
-      <div className="hidden lg:flex justify-between items-center text-sm font-poppins">
-        <ul className="flex items-center space-x-6">
+        
+        <ul className="hidden md:flex items-center space-x-6">
           <li>
-            <Link href={"/"}>Home</Link>
+            <a
+              href="/"
+              className="text-gray-700 hover:text-gray-500 transition duration-200"
+              aria-label="Home"
+            >
+              Home
+            </a>
           </li>
           <li>
-            <Link href={"/shop"}>Shop</Link>
+            <a
+              href="/shop"
+              className="text-gray-700 hover:text-gray-500 transition duration-200"
+              aria-label="Shop"
+            >
+              Shop
+            </a>
           </li>
           <li>
-            <Link href={"/blog"}>Blog</Link>
+            <a
+              href="/blog"
+              className="text-gray-700 hover:text-gray-500 transition duration-200"
+              aria-label="Blog"
+            >
+              Blog
+            </a>
           </li>
           <li>
-            <Link href={"/contact"}>Contact</Link>
+            <a
+              href="/contact"
+              className="text-gray-700 hover:text-gray-500 transition duration-200"
+              aria-label="Contact"
+            >
+              Contact
+            </a>
           </li>
         </ul>
+
+        
+        <div className="hidden md:flex items-center space-x-6">
+          <a href="/search" className="text-gray-700 hover:text-gray-500">
+            <CiSearch size={24} />
+          </a>
+          <a href="/favorites" className="text-gray-700 hover:text-gray-500">
+            <GoHeart size={24} />
+          </a>
+          <a href="/cart" className="text-gray-700 hover:text-gray-500">
+            <AiOutlineShoppingCart  size={24} />
+          </a>
+          <a href="/profile" className="text-gray-700 hover:text-gray-500">
+            <MdPersonOutline size={24} />
+          </a>
+        </div>
+
+        
+        <div className="md:hidden flex items-center">
+          <button
+            className="text-gray-700 hover:text-gray-500 focus:outline-none"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle navigation menu"
+          >
+            {isMobileMenuOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Icons */}
-      <div className="flex items-center space-x-4 text-lg">
-        <MdPersonOutline />
-        <CiSearch />
-        <GoHeart />
-        <AiOutlineShoppingCart />
-      </div>
-
-      {/* Mobile Menu - Hamburger Icon */}
-      <div className="lg:hidden flex items-center space-x-4">
-        {/* Add a hamburger icon for mobile */}
-        <button className="text-xl">☰</button>
-      </div>
-    </div>
+      
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white shadow-lg">
+          <ul className="flex flex-col space-y-4 p-4">
+            <li>
+              <a
+                href="/"
+                className="text-gray-700 hover:text-gray-500 transition duration-200"
+                aria-label="Home"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#shop"
+                className="text-gray-700 hover:text-gray-500 transition duration-200"
+                aria-label="Shop"
+              >
+                Shop
+              </a>
+            </li>
+            <li>
+              <a
+                href="/blog"
+                className="text-gray-700 hover:text-gray-500 transition duration-200"
+                aria-label="Blog"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                className="text-gray-700 hover:text-gray-500 transition duration-200"
+                aria-label="Contact"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+          <div className="flex justify-around py-4 border-t">
+            <a href="/search" className="text-gray-700 hover:text-gray-500">
+              <CiSearch size={24} />
+            </a>
+            <a href="/favorites" className="text-gray-700 hover:text-gray-500">
+              <GoHeart size={24} />
+            </a>
+            <a href="/cart" className="text-gray-700 hover:text-gray-500">
+              <AiOutlineShoppingCart size={24} />
+            </a>
+            <a href="/profile" className="text-gray-700 hover:text-gray-500">
+              <MdPersonOutline size={24} />
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   );
-}
+};
+
+export default Header;
