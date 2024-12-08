@@ -23,7 +23,9 @@ export default function Shop() {
         
       </div>
     <br/>
-<div className=" w-full h-full border-spacing-6 bg-slate-50"></div>
+<div className=" w-full h-full border-spacing-6 bg-slate-50">
+  
+</div>
     </div>
     
    
