@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ProductGrid() {
     const products = [
       {
@@ -145,7 +147,7 @@ export default function ProductGrid() {
             >
               {/* Image Section */}
               <div className="relative">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
                   className="w-full h-96 object-cover"

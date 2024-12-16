@@ -1,7 +1,6 @@
 
 "use client"
 import React, { useState } from 'react';import Image from "next/image";
-import Link from "next/link";
 import { MdPersonOutline } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { GoHeart } from "react-icons/go";
