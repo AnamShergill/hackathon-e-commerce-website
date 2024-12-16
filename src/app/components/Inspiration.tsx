@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-
 export default function Inspiration() {
   // State to track the current image index
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,17 +14,17 @@ export default function Inspiration() {
       title: "Inner Peace",
       description: "01 — Bed Room",
     },
-    
+
     {
       src: "/images/Rectangle.png",
       title: "Classic Touch",
       description: "02 — Dining Room",
     },
     {
-        src: "/images/image-inspire.png",
-        title: "Modern Aesthetic",
-        description: "03 — Living Room",
-      },
+      src: "/images/image-inspire.png",
+      title: "Modern Aesthetic",
+      description: "03 — Living Room",
+    },
   ];
 
   // Function to navigate images
@@ -41,13 +40,13 @@ export default function Inspiration() {
 
   return (
     <div className="bg-[#faf8f5] min-h-screen flex justify-center items-center p-6">
-      <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
         {/* Left Section */}
         <div className="flex flex-col justify-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-snug">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-snug">
             50+ Beautiful rooms inspiration
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg sm:text-base text-gray-600">
             Our designer already made a lot of beautiful prototypes of rooms
             that inspire you.
           </p>
@@ -65,14 +64,14 @@ export default function Inspiration() {
               alt={images[currentIndex].title}
               width={700}
               height={500}
-              className="rounded-lg shadow-md object-cover"
+              className="rounded-lg shadow-md object-cover w-full"
             />
             {/* Overlay Text */}
             <div className="absolute bottom-6 left-6 bg-white/90 p-4 rounded-lg shadow-sm">
               <p className="text-sm text-gray-500">
                 {images[currentIndex].description}
               </p>
-              <h2 className="text-xl font-semibold text-gray-800">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
                 {images[currentIndex].title}
               </h2>
             </div>
@@ -125,13 +124,13 @@ export default function Inspiration() {
         </div>
 
         {/* Sub Room Images */}
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between mt-4 sm:mt-6">
           {/* Thumbnail Images */}
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 sm:grid-cols-3 gap-2">
             {images.map((image, index) => (
               <div
                 key={index}
-                className={`w-24 h-24 overflow-hidden rounded-md shadow-md cursor-pointer ${
+                className={`w-20 h-20 sm:w-24 sm:h-24 overflow-hidden rounded-md shadow-md cursor-pointer ${
                   currentIndex === index ? "ring-4 ring-[#c1975a]" : ""
                 }`}
                 onClick={() => setCurrentIndex(index)}

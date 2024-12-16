@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <div className="relative h-screen flex items-center">
+    <div className="relative h-screen flex items-center justify-end">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -14,14 +14,14 @@ export default function HeroSection() {
       </div>
 
       {/* Text Section */}
-      <div className="relative z-10 bg-amber-100 p-8 md:p-12 rounded-lg shadow-lg max-w-xl lg:max-w-2xl ml-auto mr-6 md:mr-12">
+      <div className="relative z-10 bg-amber-100 p-8 md:p-12 rounded-lg shadow-lg max-w-xl lg:max-w-2xl ml-auto mr-6 md:mr-12 sm:max-w-full sm:ml-4 sm:mr-4">
         <p className="text-gray-500 text-base md:text-lg font-medium uppercase mb-4">
           New Arrival
         </p>
-        <h1 className="text-3xl md:text-5xl font-bold text-amber-600 mb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-amber-600 mb-6">
           Discover Our <br className="hidden md:block" /> New Collection
         </h1>
-        <p className="text-gray-700 text-lg md:text-xl mb-8">
+        <p className="text-gray-700 text-lg sm:text-base md:text-xl mb-8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
           tellus, luctus nec ullamcorper mattis.
         </p>

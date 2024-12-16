@@ -1,32 +1,55 @@
 "use client";
 
+import React from "react";
+import Image from "next/image";
+
 import { TiLocation } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
 import { IoTimeSharp } from "react-icons/io5";
+import Footer2 from "../components/Footer2";
 
 export default function Contact() {
   return (
-    <main className="font-poppins" id="contact">
-      <div className="h-20 flex">
-        <div
-          className="h-[30%] w-full bg-cover bg-center"
-          style={{ backgroundImage: "url('/bg.jpg')" }}
-        ></div>
+    <div className="w-full min-h-screen relative">
+      <div className="relative w-full h-[40vh] sm:h-[50vh] lg:h-[60vh]">
+      <Image
+               src="/images/shopheader.png"
+               alt="header image"
+               layout="fill"
+               objectFit="cover"
+               className="z-0"
+             />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-black text-center px-4 sm:px-6 z-10">
+          <Image
+            src="/images/logo2.png"
+            alt="logo"
+            width={77}
+            height={77}
+            className="w-16 sm:w-20 md:w-24 lg:w-28" // Logo size adjusted for each screen size
+          />
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-4">
+            Contact
+          </h1>
+          <pre className="bg-black bg-opacity-0 text-black p-4 rounded-md font-poppins text-sm sm:text-base md:text-lg font-semibold">
+            {`Home > Contact`}
+          </pre>
+        </div>
       </div>
 
-      {/* Title and description */}
+      {/* Title and Description */}
       <div className="flex flex-col items-center justify-center mt-16 px-4 sm:px-8 md:px-12">
-        <h1 className="text-4xl font-semibold text-black mb-4 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-black mb-4 text-center">
           Get In Touch With Us
         </h1>
-        <p className="text-lg text-gray-400 font-normal max-w-3xl text-center">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-normal max-w-3xl text-center">
           For More Information About Our Product & Services. Please Feel Free To
-          Drop Us An Email. Our Staff Is Always Here To Help You. Do Not Hesitate!
+          Drop Us An Email. Our Staff Is Always Here To Help You. Do Not
+          Hesitate!
         </p>
       </div>
 
       {/* Contact Info and Form Section */}
-      <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-12 mt-20 mx-20">
+      <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-12 mt-24 mx-4 sm:mx-8 lg:mx-40">
         {/* Contact Info */}
         <div className="flex-1 mb-8 md:mb-0">
           <div className="mb-4">
@@ -70,7 +93,9 @@ export default function Contact() {
         <div className="flex-1 w-full max-w-md mx-auto md:mx-0 md:ml-12">
           <form className="space-y-4">
             <div>
-              <label htmlFor="name" className="block mb-2">Your Name</label>
+              <label htmlFor="name" className="block mb-2">
+                Your Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -82,7 +107,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block mb-2">Email Address</label>
+              <label htmlFor="email" className="block mb-2">
+                Email Address
+              </label>
               <input
                 type="email"
                 id="email"
@@ -94,7 +121,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="subject" className="block mb-2">Subject</label>
+              <label htmlFor="subject" className="block mb-2">
+                Subject
+              </label>
               <textarea
                 id="subject"
                 name="subject"
@@ -106,7 +135,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block mb-2">Message</label>
+              <label htmlFor="message" className="block mb-2">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -129,13 +160,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer Image */}
-      <div className="h-screen flex mt-36">
-        <div
-          className="h-[20%] w-full bg-cover bg-center"
-          style={{ backgroundImage: "url('/cool.jpg')" }}
-        ></div>
-      </div>
-    </main>
+      <Footer2 />
+    </div>
   );
 }
