@@ -3,9 +3,9 @@ import React from "react";
 export default function FilterBar() {
   return (
     <div className="bg-[#F9F1E7] border p-4 rounded-md max-w-full box-border">
-      <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:justify-between gap-4">
         {/* Left Section */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 flex-wrap">
           <button className="text-sm font-medium text-gray-600 hover:text-black">
             🔧 Filter
           </button>
@@ -23,7 +23,7 @@ export default function FilterBar() {
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 flex-wrap">
           <div className="flex items-center gap-2">
             <label className="text-sm font-medium">Show</label>
             <select className="p-2 border rounded text-sm">
@@ -46,7 +46,3 @@ export default function FilterBar() {
     </div>
   );
 }
-
-
-
-  
