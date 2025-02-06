@@ -18,11 +18,9 @@ import Image from "next/image";
 export const Header = () => {
   const { cartCount } = useCart();  // Get the cart count from the context
   const { wishlist } = useWishlist();  // Get wishlist data from the context
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+ 
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-5">

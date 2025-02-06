@@ -39,7 +39,7 @@ export default function Checkout() {
   // Check validation whenever form data changes
   useEffect(() => {
     validateForm();
-  }, [formData]);
+  }, [formData, validateForm]);
 
   if (!cart) {
     return <p>Loading...</p>; // Handle case if cart is undefined

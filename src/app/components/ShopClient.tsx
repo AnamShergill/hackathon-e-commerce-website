@@ -5,7 +5,7 @@ import PriceFilter from "@/app/components/PriceFilter";
 import Pagination from "@/app/components/Pagination";
 import { useCart } from "@/app/components/CartContext";
 import { Product } from "../../../types/products"; // Import useCart hook
-
+import Image from "next/image";
 
 
 interface ShopClientProps {
@@ -16,7 +16,7 @@ interface ShopClientProps {
 
 const ShopClient = ({
   products,
-  productsPerPage,
+
   totalPages,
 }: ShopClientProps) => {
   // Memoize filtered products to avoid re-rendering when products don't change
@@ -80,9 +80,11 @@ const ShopClient = ({
               className="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all"
             >
               {/* Product Image */}
-              <img
+              <Image
                 src={product.imageUrl}
                 alt={product.title}
+                width={200}
+                height={200}
                 className="object-cover w-full h-64 mb-4"
               />
               {/* Product Details */}
@@ -115,7 +117,7 @@ const ShopClient = ({
 
       {/* Pagination */}
       <div className="py-7">
-        <Pagination products={filteredProducts} totalPages={totalPages} currentPage={0} onPageChange={function (page: number): void {
+        <Pagination products={filteredProducts} totalPages={totalPages} currentPage={0} onPageChange={function (): void {
           throw new Error("Function not implemented.");
         } } />
       </div>

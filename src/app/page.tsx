@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useCart } from "@/app/components/CartContext"; // Import CartContext
+
 import ProductCard from "./components/ProductCard";
 import Hero from "./components/Hero";
 import Range from "./components/Range";

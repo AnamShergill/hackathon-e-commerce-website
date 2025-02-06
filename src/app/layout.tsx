@@ -1,3 +1,4 @@
+import React from "react";
 import { CartProvider } from "@/app/components/CartContext";
 import { WishlistProvider } from "../app/components/WishlistContext"; // Make sure path is correct
 import { ComparisonProvider } from "@/app/components/Comparison"; // Ensure correct path for ComparisonContext

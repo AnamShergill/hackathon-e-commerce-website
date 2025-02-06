@@ -2,7 +2,6 @@ import React from "react";
 import { client } from "@/sanity/lib/client"; // Sanity client for data fetching
 import Image from "next/image"; // Image optimization in Next.js
 import { notFound } from "next/navigation"; // For handling not found pages (Next.js 13+)
-import ProductClient from "@/app/components/ProductClient"; // Assuming this component handles add-to-cart or other actions
 import Link from "next/link";
 import { Product } from "../../../../types/products";
 
