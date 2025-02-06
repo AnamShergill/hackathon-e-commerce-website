@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
 
@@ -10,17 +11,19 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ onFilterChange }) => {
   // Explicitly define priceRange as a tuple
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
 
+  // Handle changes on the slider
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.valueAsNumber;
     if (e.target.name === "minPrice" && value <= priceRange[1]) {
-      setPriceRange([value, priceRange[1]]); // Ensure tuple structure
+      setPriceRange([value, priceRange[1]]);
     } else if (e.target.name === "maxPrice" && value >= priceRange[0]) {
-      setPriceRange([priceRange[0], value]); // Ensure tuple structure
+      setPriceRange([priceRange[0], value]);
     }
   };
 
+  // Apply the selected filter
   const handleApply = () => {
-    onFilterChange(priceRange); // Passing a tuple as expected
+    onFilterChange(priceRange); // Passing the updated price range to parent
   };
 
   return (
@@ -33,8 +36,6 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ onFilterChange }) => {
           </button>
 
           <span className="hidden sm:block w-px bg-gray-300 h-5"></span>
-
-         
         </div>
 
         {/* Right Section */}
@@ -66,10 +67,53 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ onFilterChange }) => {
               Above $1000
             </button>
           </div>
+
+          {/* Slider for custom price range */}
+          <div className="mt-6">
+            <label htmlFor="minPrice" className="block text-sm text-gray-600">
+              Min Price
+            </label>
+            <input
+              type="range"
+              id="minPrice"
+              name="minPrice"
+              min="0"
+              max="1000"
+              step="1"
+              value={priceRange[0]}
+              onChange={handleSliderChange}
+              className="w-full"
+            />
+            <span>${priceRange[0]}</span>
+
+            <label htmlFor="maxPrice" className="block text-sm text-gray-600 mt-4">
+              Max Price
+            </label>
+            <input
+              type="range"
+              id="maxPrice"
+              name="maxPrice"
+              min="0"
+              max="1000"
+              step="1"
+              value={priceRange[1]}
+              onChange={handleSliderChange}
+              className="w-full"
+            />
+            <span>${priceRange[1]}</span>
+          </div>
+
+          {/* Apply button */}
+          <div className="mt-4">
+            <button
+              onClick={handleApply}
+              className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Apply Filter
+            </button>
+          </div>
         </div>
       </div>
-
-     
     </div>
   );
 };

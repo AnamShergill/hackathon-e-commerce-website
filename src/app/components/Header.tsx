@@ -1,8 +1,9 @@
 
 "use client"
+import React from "react";
 import { Heart, Search, ShoppingCart, Menu, User } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from 'react'
+
 import { Button } from "./ui/button";
 import { useCart } from "@/app/components/CartContext"; // Assuming you have CartContext
 import  {useWishlist}  from "@/app/components/WishlistContext"; // Import WishlistContext

@@ -23,7 +23,7 @@ export default function HeroSection() {
         </h1>
         <p className="text-gray-700 text-lg sm:text-base md:text-xl mb-8">
           
-"Transform Your Space with Stylish, Comfortable Furniture. Explore Our Collection of Modern, Durable Pieces Designed to Fit Every Home and Style."
+        &quot;Transform Your Space with Stylish, Comfortable Furniture. Explore Our Collection of Modern, Durable Pieces Designed to Fit Every Home and Style.&quot;
         </p>
         <a href="/shop">
   <button className="bg-amber-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-amber-700">

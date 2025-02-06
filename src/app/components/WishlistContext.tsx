@@ -1,4 +1,5 @@
-// WishlistContext.tsx
+/* eslint-disable no-unused-vars */
+
 "use client";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Product } from "../../../types/products";

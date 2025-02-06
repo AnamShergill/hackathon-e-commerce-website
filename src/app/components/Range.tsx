@@ -5,8 +5,8 @@ export default function BrowseRange() {
     <section className="text-center p-6 mx-20">
       <h1 className="text-3xl font-bold mb-2 mt-3">Browse The Range</h1>
       <p className="text-gray-600 font-serif mb-6">
-        "From cozy sofas to elegant dining sets, find the perfect
-        pieces to elevate your home."
+      &quot;From cozy sofas to elegant dining sets, find the perfect
+        pieces to elevate your home.&quot;
       </p>
       <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8">
         {/* Dining Section */}

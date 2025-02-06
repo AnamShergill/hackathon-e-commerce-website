@@ -1,4 +1,6 @@
-// components/Pagination.tsx
+/* eslint-disable no-unused-vars */
+
+
 import React from 'react';
 import { Product } from '../../../types/products'; // Import the Product type
 import ProductCard from './ProductCard'; // Assuming you have ProductCard in the same folder
@@ -18,7 +20,7 @@ const Pagination = ({
   onPageChange,
 }: PaginationProps) => {
   const { addToCart } = useCart();  // Access addToCart from CartContext
-  const productsPerPage = 8;
+  const productsPerPage = 8;  // Define how many products you want per page
 
   // Calculate the products to display based on the current page
   const startIndex = (currentPage - 1) * productsPerPage;
