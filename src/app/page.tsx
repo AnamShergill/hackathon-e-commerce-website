@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
 import ProductCard from "./components/ProductCard";
 import Hero from "./components/Hero";
 import Range from "./components/Range";
@@ -50,17 +49,19 @@ const ProductCards: React.FC = () => {
       <Hero />
       <Range />
       <div className="p-4">
-        <h1 className="text-3xl font-bold mb-6 text-center">Our Featured Products</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Our Featured Products
+        </h1>
         {products.length === 0 ? (
           <p>Loading products...</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               // Pass a flag `showButtons` to indicate whether the buttons should be shown
-              <ProductCard 
-                key={product._id} 
-                product={product} 
-                showButtons={false}  // Setting it false to hide Add to Cart & Add to Wishlist buttons on homepage
+              <ProductCard
+                key={product._id}
+                product={product}
+                showButtons={false} // Setting it false to hide Add to Cart & Add to Wishlist buttons on homepage
               />
             ))}
           </div>
