@@ -1,85 +1,88 @@
-export default function Footer() {
+
+import React from "react";
+import Link from "next/link";  // Import Link for navigation
+
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-white py-10 relative">
-      <div className="max-w-7xl h-auto mx-auto px-4 top-1 grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-        <div>
-          <h3 className="font-bold text-2xl font-poppins text-black">
-            Funiro.
-          </h3>
-          <p className="text-gray-400 pt-6">
-            400 University Drive Suite 200 Coral Gables,
-            <br /> FL 33134 USA.
-          </p>
-        </div>
+    <footer className="border-t border-gray-300 py-10 relative">
+    <div className="max-w-7xl h-auto mx-auto px-4 top-1 grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+      {/* Company Info */}
+      <div>
+        <h2 className="font-bold text-2xl">Furniro.</h2>
+        <p className="text-gray-700 mt-2 font-bold">
+          400 University Drive Suite 200 Coral Gables, FL 33134 USA
+        </p>
+      </div>
 
-        <div>
-          <h3 className="font-semibold text-lg text-gray-400">Links</h3>
-          <ul className="space-y-4 mt-6 mb-6">
+        {/* Navigation */}
+        <div className="px-10">
+          <h4 className="font-semibold text-lg">Navbar</h4>
+          <ul className="space-y-4 text-gray-600 mb-6 mt-6">
             <li>
-              <a href="/" className="text-black hover:text-yellow-500">
+              <Link href="/" passHref className="text-md font-bold text-gray-600 hover:text-black">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/shop" className="text-black hover:text-yellow-500">
-                Shop
-              </a>
+              <Link href="/shop" passHref className="text-md font-bold text-gray-600 hover:text-black">
+               Shop
+              </Link>
+            </li>
+           
+            <li>
+              <Link href="/feedback" passHref className="text-md font-bold text-gray-600 hover:text-black">
+                FeedBack
+              </Link>
+              
             </li>
             <li>
-              <a href="/blog" className="text-black hover:text-yellow-500">
-                Blog
-              </a>
+              <Link href="/faq" passHref className="text-md font-bold text-gray-600 hover:text-black">
+                FAQ
+              </Link>
+              
             </li>
-            <li>
-              <a href="/contact" className="text-black hover:text-yellow-500">
-                Contact
-              </a>
-            </li>
+
+            
           </ul>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-lg text-gray-400">Help</h3>
-          <ul className="space-y-4 mt-6">
-            <li>
-              <a href="#" className="text-black hover:text-yellow-500">
-                Payment option
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-black hover:text-yellow-500">
-                Return
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-black hover:text-yellow-500">
-                Privacy Policies
-              </a>
-            </li>
+        {/* Help */}
+        <div >
+          <h4 className="font-semibold text-lg">Help</h4>
+          <ul className="space-y-2 text-gray-600 mt-2">
+            <li className="text-md font-bold text-gray-600 hover:text-black">Payment Option</li>
+            <li className="text-md font-bold text-gray-600 hover:text-black">Returns</li>
+            <li className="text-md font-bold text-gray-600 hover:text-black">Privacy Policies</li>
           </ul>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-lg text-gray-400">Newsletter</h3>
-          <form className="flex justify-center items-center  mt-8 flex-wrap gap-3">
+        {/* Newsletter */}
+        <section >
+          <h4 className="font-semibold text-lg">Newsletter</h4>
+          <form className="flex flex-col gap-2 mt-2">
             <input
               type="email"
-              placeholder="Enter your email address"
-              className="w-full md:flex-1 bg-transparent border-b-2 border-black text-black focus:outline-none focus:border-yellow-500 placeholder-gray-500"
+              placeholder="Your Email"
+              className="border rounded p-2"
+              aria-label="Your Email"
             />
             <button
               type="submit"
-              className="border-b-2 border-black text-black focus:border-yellow-500 hover:text-yellow-500 px-4 py-2"
+              className="bg-black text-white font-bold p-2 rounded"
             >
-              Subscribe
+              SUBSCRIBE
             </button>
           </form>
-        </div>
+        </section>
       </div>
 
-      <div className="w-full text-left text-black border-t py-4">
-        © 2024 Funiro. All rights reserved.
+      {/* Footer Bottom */}
+      <div className="mt-8 text-center">
+        <hr className="border-gray-300 mb-3" />
+        <p className="text-gray-600">2023 Funiro. All rights reserved.</p>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -1,158 +1,142 @@
 
 "use client"
-import React, { useState } from 'react';import Image from "next/image";
-import { MdPersonOutline } from "react-icons/md";
-import { CiSearch } from "react-icons/ci";
-import { GoHeart } from "react-icons/go";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Heart, Search, ShoppingCart, Menu, User } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from 'react'
+import { Button } from "./ui/button";
+import { useCart } from "@/app/components/CartContext"; // Assuming you have CartContext
+import  {useWishlist}  from "@/app/components/WishlistContext"; // Import WishlistContext
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from "@/app/components/ui/sheet";
+import Image from "next/image";
 
-const Header = () => {
+export const Header = () => {
+  const { cartCount } = useCart();  // Get the cart count from the context
+  const { wishlist } = useWishlist();  // Get wishlist data from the context
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-5">
-        
-        <div className="flex items-center space-x-2">
-          <Image
+        {/* Logo Section */}
+        <div className="flex items-center gap-2">
+        <Image
             src="/images/logo.png"
             alt="Furniro Logo"
             width={120}
             height={40}
             className="object-contain"
           />
+         
         </div>
 
-        
-        <ul className="hidden md:flex items-center space-x-6">
-          <li>
-            <a
-              href="/"
-              className="text-gray-700 hover:text-gray-500 transition duration-200"
-              aria-label="Home"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="/shop"
-              className="text-gray-700 hover:text-gray-500 transition duration-200"
-              aria-label="Shop"
-            >
-              Shop
-            </a>
-          </li>
-          <li>
-            <a
-              href="/blog"
-              className="text-gray-700 hover:text-gray-500 transition duration-200"
-              aria-label="Blog"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              className="text-gray-700 hover:text-gray-500 transition duration-200"
-              aria-label="Contact"
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
-
-        
-        <div className="hidden md:flex items-center space-x-6">
-          <a href="/search" className="text-gray-700 hover:text-gray-500">
-            <CiSearch size={24} />
-          </a>
-          <a href="/favorites" className="text-gray-700 hover:text-gray-500">
-            <GoHeart size={24} />
-          </a>
-          <a href="/cart" className="text-gray-700 hover:text-gray-500">
-            <AiOutlineShoppingCart  size={24} />
-          </a>
-          <a href="/profile" className="text-gray-700 hover:text-gray-500">
-            <MdPersonOutline size={24} />
-          </a>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-8">
+          <Link href="/"  className="text-md font-bold text-gray-600 hover:text-black">
+            Home
+          </Link>
+          <Link href="/shop" target="_blank" className="text-md font-bold text-gray-600 hover:text-black">
+            Shop
+          </Link>
+          <Link href="/blog" target="_blank" className="text-md font-bold text-gray-600 hover:text-black">
+            Blog
+          </Link>
+          <Link href="/contact" target="_blank" className="text-md font-bold text-gray-600 hover:text-black">
+            Contact
+          </Link>
         </div>
 
-        
-        <div className="md:hidden flex items-center">
-          <button
-            className="text-gray-700 hover:text-gray-500 focus:outline-none"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
-          </button>
-        </div>
-      </div>
+        {/* Icons */}
+        <div className="hidden md:flex items-center gap-4">
+          <Button variant="outline" size="icon" className="rounded-full">
+            <User />
+          </Button>
+          <Link href="/wishlist">
+            <Button variant="outline" size="icon" className="rounded-full relative">
+              <Heart />
+              {wishlist.length > 0 && (
+                <span className="absolute top-0 right-0 text-xs font-bold text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">
+                  {wishlist.length}
+                </span>
+              )}
+            </Button>
+          </Link>
 
-      
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <ul className="flex flex-col space-y-4 p-4">
-            <li>
-              <a
-                href="/"
-                className="text-gray-700 hover:text-gray-500 transition duration-200"
-                aria-label="Home"
-              >
+          <Link href="/cart">
+            <Button variant="outline" size="icon" className="rounded-full relative">
+              <ShoppingCart />
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 text-xs font-bold text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
+          </Link>
+
+          <Button variant="outline" size="icon" className="rounded-full">
+            <Search />
+          </Button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <Sheet>
+          <SheetTrigger className="md:hidden">
+            <Menu />
+          </SheetTrigger>
+          <SheetContent side="right">
+            <SheetHeader>
+              <SheetTitle>Furniro</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col gap-4 mt-4">
+              <Link href="/" className="text-md font-medium text-gray-600">
                 Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#shop"
-                className="text-gray-700 hover:text-gray-500 transition duration-200"
-                aria-label="Shop"
-              >
+              </Link>
+              <Link href="/shop" className="text-md font-medium text-gray-600">
                 Shop
-              </a>
-            </li>
-            <li>
-              <a
-                href="/blog"
-                className="text-gray-700 hover:text-gray-500 transition duration-200"
-                aria-label="Blog"
-              >
+              </Link>
+              <Link href="/blog" className="text-md font-medium text-gray-600">
                 Blog
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-gray-500 transition duration-200"
-                aria-label="Contact"
-              >
+              </Link>
+              <Link href="/contact" className="text-md font-medium text-gray-600">
                 Contact
-              </a>
-            </li>
-          </ul>
-          <div className="flex justify-around py-4 border-t">
-            <a href="/search" className="text-gray-700 hover:text-gray-500">
-              <CiSearch size={24} />
-            </a>
-            <a href="/favorites" className="text-gray-700 hover:text-gray-500">
-              <GoHeart size={24} />
-            </a>
-            <a href="/cart" className="text-gray-700 hover:text-gray-500">
-              <AiOutlineShoppingCart size={24} />
-            </a>
-            <a href="/profile" className="text-gray-700 hover:text-gray-500">
-              <MdPersonOutline size={24} />
-            </a>
-          </div>
-        </div>
-      )}
+              </Link>
+              <div className="flex mt-6 gap-4">
+                <Link href="/wishlist">
+                  <Button variant="outline" size="icon" className="rounded-full">
+                    <Heart />
+                    {wishlist.length > 0 && (
+                      <span className="absolute top-0 right-0 text-xs font-bold text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">
+                        {wishlist.length}
+                      </span>
+                    )}
+                  </Button>
+                </Link>
+                <Link href="/cart">
+                  <Button variant="outline" size="icon" className="rounded-full relative">
+                    <ShoppingCart />
+                    {cartCount > 0 && (
+                      <span className="absolute top-0 right-0 text-xs font-bold text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">
+                        {cartCount}
+                      </span>
+                    )}
+                  </Button>
+                </Link>
+                <Button variant="outline" size="icon" className="rounded-full">
+                  <Search />
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   );
 };

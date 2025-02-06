@@ -1,168 +1,125 @@
-import Image from "next/image";
+// components/ProductCard.tsx
+'use client';
 
-export default function ProductCard() {
+import React from 'react';
+import { useWishlist } from '@/app/components/WishlistContext';
+import { useCart } from '@/app/components/CartContext'; // Import useCart hook
+import Link from 'next/link';
+import Image from 'next/image';
+import { Product } from '../../../types/products';
+
+interface ProductCardProps {
+  product: Product;
+  onAddToCart?: () => void;  // Optional prop to pass add to cart functionality
+  showButtons?: boolean;  // Add showButtons prop to control button visibility
+}
+
+const ProductCard = ({ product, onAddToCart, showButtons = true }: ProductCardProps) => {
+  const { addToWishlist } = useWishlist();
+  const { addToCart } = useCart(); // Access addToCart from CartContext
+
+  // Handle adding the product to the wishlist
+  const handleAddToWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    addToWishlist(product); // Add the product to the wishlist
+  };
+
+  // Handle adding the product to the cart
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent the default behavior
+    if (onAddToCart) {
+      onAddToCart();  // Call passed in onAddToCart function if available
+    } else {
+      addToCart(product); // Fallback to context's addToCart if no onAddToCart prop
+    }
+  };
+
+  // Truncate long descriptions for the product
+  const truncateDescription = (description: string, maxLength: number = 100) => {
+    if (description.length > maxLength) {
+      return description.substring(0, maxLength) + '...';
+    }
+    return description;
+  };
+
   return (
-    <div>
-      <div className="text-center p-6">
-        <h1 className="text-3xl font-bold mb-2">Our Products</h1>
-        
-        {/* First Section of Products */}
-        <div className="flex flex-wrap justify-center gap-6 py-10">
-          {/* Product 1 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/syltherine.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Syltherine</h2>
-              <p className="text-gray-500 text-sm mb-2">Stylish Cafe Chair</p>
-              <p className="font-bold text-lg">Rp 2.500.000</p>
-            </div>
+    <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-500 transform hover:scale-105 border border-gray-200 hover:border-indigo-500 relative overflow-hidden cursor-pointer">
+      <div className="relative">
+        <Image
+          src={product.imageUrl || '/fallback-image.jpg'} // Correct URL access
+          alt={product.title}
+          width={500}
+          height={500}
+          className="w-full h-64 object-cover rounded-lg transition duration-300 hover:opacity-90"
+        />
+        {product.isNew && (
+          <span className="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-md">
+            New
+          </span>
+        )}
+        {product.discountPercentage && (
+          <span className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 text-xs font-semibold rounded-full">
+            -{product.discountPercentage}% Off
+          </span>
+        )}
+      </div>
+      <div className="mt-5 text-center">
+        <h2 className="text-2xl font-bold text-gray-800 hover:text-indigo-600 transition">
+          {product.title}
+        </h2>
+      </div>
+      <div className="flex justify-center items-center gap-3 mt-4">
+        <span className="text-xl font-extrabold text-blue-600">${product.price}</span>
+        {product.discountPercentage && (
+          <span className="text-sm text-gray-500 line-through">
+            ${(
+              product.price /
+              (1 - product.discountPercentage / 100)
+            ).toFixed(2)}
+          </span>
+        )}
+      </div>
+
+      {/* Truncated Description */}
+      <div className="mt-3 text-sm text-gray-600">
+        <p>{truncateDescription(product.description, 100)}</p>
+      </div>
+
+      {/* Conditionally render buttons */}
+      {showButtons && (
+        <>
+          {/* Add to Cart Button */}
+          <div className="mt-6 text-center">
+            <button
+              onClick={handleAddToCart} // Use handleAddToCart function here
+              className="bg-blue-600 text-white px-4 py-2 rounded-md font-bold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+            >
+              Add to Cart
+            </button>
           </div>
 
-          {/* Product 2 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/leviosaa.jpg"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Leviosa</h2>
-              <p className="text-gray-500 text-sm mb-2">Stylish Cafe Chair</p>
-              <p className="font-bold text-lg">Rp 2.500.000</p>
-            </div>
+          {/* Add to Wishlist Button */}
+          <div className="mt-2 text-center">
+            <button
+              onClick={handleAddToWishlist}
+              className="bg-gray-600 text-white px-4 py-2 rounded-md font-bold hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
+            >
+              Add to Wishlist
+            </button>
           </div>
+        </>
+      )}
 
-          {/* Product 3 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/lolito.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Lolito</h2>
-              <p className="text-gray-500 text-sm mb-2">Luxury Big Sofa</p>
-              <p className="font-bold text-lg">Rp 7.000.000</p>
-            </div>
-          </div>
-
-          {/* Product 4 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/respira.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Respira</h2>
-              <p className="text-gray-500 text-sm mb-2">Outdoor Bar Table and Stool</p>
-              <p className="font-bold text-lg">Rp 500.000</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Second Section of Products */}
-        <div className="flex flex-wrap justify-center gap-6 py-10">
-          {/* Product 5 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/grifo.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Grifo</h2>
-              <p className="text-gray-500 text-sm mb-2">Night Lamp</p>
-              <p className="font-bold text-lg">Rp 1.500.000</p>
-            </div>
-          </div>
-
-          {/* Product 6 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/muggo.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Muggo</h2>
-              <p className="text-gray-500 text-sm mb-2">Small Mug</p>
-              <p className="font-bold text-lg">Rp 150.000</p>
-            </div>
-          </div>
-
-          {/* Product 7 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/pingky.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Pingky</h2>
-              <p className="text-gray-500 text-sm mb-2">Cute Bed Set</p>
-              <p className="font-bold text-lg">Rp 7.000.000</p>
-            </div>
-          </div>
-
-          {/* Product 8 */}
-          <div className="max-w-xs bg-gray-100 rounded-lg shadow-md overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/potty.png"
-                alt="cafe chair"
-                width={300}
-                height={300}
-                className="object-cover w-full h-64"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="font-bold text-lg">Potty</h2>
-              <p className="text-gray-500 text-sm mb-2">Minimalist flower</p>
-              <p className="font-bold text-lg">Rp 500.000</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Show More Button */}
-        <div className="flex justify-center mt-8">
-          <button className="bg-yellow-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-yellow-600">
-            Show More
-          </button>
-        </div>
+      {/* Link to product page */}
+      <div className="mt-4 text-center">
+        <Link href={`/Products/${product._id}`}>
+          <span className="block text-indigo-600 font-semibold hover:text-indigo-800 transition-all duration-300 transform hover:scale-105">
+            View Product
+          </span>
+        </Link>
       </div>
     </div>
   );
-}
+};
+
+export default ProductCard;

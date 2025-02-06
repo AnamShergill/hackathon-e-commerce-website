@@ -22,12 +22,14 @@ export default function HeroSection() {
           Discover Our <br className="hidden md:block" /> New Collection
         </h1>
         <p className="text-gray-700 text-lg sm:text-base md:text-xl mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis.
+          
+"Transform Your Space with Stylish, Comfortable Furniture. Explore Our Collection of Modern, Durable Pieces Designed to Fit Every Home and Style."
         </p>
-        <button className="bg-amber-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-amber-700">
-          Buy Now
-        </button>
+        <a href="/shop">
+  <button className="bg-amber-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-amber-700">
+    Buy Now
+  </button>
+</a>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Footer2 from "../components/Footer2";
 import { IoPerson } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { FaTag } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Blog() {
   return (
@@ -17,13 +18,15 @@ export default function Blog() {
           className="z-0"
         />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-black text-center px-4 sm:px-6 z-10">
-          <Image src="/images/logo2.png" alt="logo" width={77} height={77} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-4">Blog</h1>
-          <pre className="bg-opacity-0 text-black p-4 rounded-md font-poppins text-sm sm:text-base md:text-lg lg:text-xl font-semibold">
-            {`Home > Contact`}
-          </pre>
-        </div>
+<div className="absolute inset-0 flex flex-col items-center justify-center text-black text-center px-4 sm:px-6 z-10">
+  <Image src="/images/logo2.png" alt="logo" width={77} height={77} />
+  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-4">Blog</h1>
+  
+  <pre className="bg-opacity-0 text-black p-4 rounded-md font-poppins text-sm sm:text-base md:text-lg lg:text-xl font-semibold">
+    <Link href="/" className="hover:text-blue-500">Home</Link> &gt;{" "}
+    <Link href="/contact" className="hover:text-blue-500">Contact</Link>
+  </pre>
+</div>
       </div>
 {/*left side div*/}
       <div className="flex flex-wrap lg:flex-nowrap justify-center gap-8 mx-4 sm:mx-8 lg:mx-16 pt-12">

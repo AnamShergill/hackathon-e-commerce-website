@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { TiLocation } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
@@ -20,20 +21,14 @@ export default function Contact() {
                className="z-0"
              />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-black text-center px-4 sm:px-6 z-10">
-          <Image
-            src="/images/logo2.png"
-            alt="logo"
-            width={77}
-            height={77}
-            className="w-16 sm:w-20 md:w-24 lg:w-28" // Logo size adjusted for each screen size
-          />
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-4">
-            Contact
-          </h1>
-          <pre className="bg-black bg-opacity-0 text-black p-4 rounded-md font-poppins text-sm sm:text-base md:text-lg font-semibold">
-            {`Home > Contact`}
-          </pre>
-        </div>
+  <Image src="/images/logo2.png" alt="logo" width={77} height={77} />
+  <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold mb-4">Contact</h1>
+  
+  <pre className="bg-opacity-0 text-black p-4 rounded-md font-poppins text-sm sm:text-base md:text-lg lg:text-xl font-semibold">
+    <Link href="/" className="hover:text-blue-500">Home</Link> &gt;{" "}
+    <Link href="/contact" className="hover:text-blue-500">Contact</Link>
+  </pre>
+</div>
       </div>
 
       {/* Title and Description */}
