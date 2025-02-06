@@ -19,7 +19,7 @@ const fetchProduct = async (id: string): Promise<Product | null> => {
     colors,
     sizes
   }`;
-  const product = await client.fetch(query, { id });
+  const product = await client.fetch(query,{ id });
   return product || null;
 };
 
