@@ -17,7 +17,7 @@ Designed and structured the marketplace schema.
 
 Ensured scalability and user-friendliness in the platform’s design.
 
-# 🚀 This step was crucial in setting a strong foundation for the eCommerce platform.
+ 🚀 This step was crucial in setting a strong foundation for the eCommerce platform.
 
 
 # 📅 Day 2: Technical Planning & System Architecture
@@ -99,9 +99,15 @@ Conducted extensive functional, performance, and security tests.
 💡 The platform was now fully production-ready!
 
 
-# Submitted the project successfully!
+# Submitted the project successfully! 🎉👍
+
+# 🔗 Live Demo
+Check out the live version here!  "https://hackathon3-e-commerce-website-3zka.vercel.app/"
+
 
 # 🎉 Hackathon Completed! 🎉
+
+
 
 # 📂 Tech Stack & Tools Used
 
